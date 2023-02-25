@@ -1,22 +1,24 @@
 #!/bin/bash
 
 # Pre-Requisit installation
-apt-get update -y
-apt-get upgrade -y
-apt-get install git vim -y
-apt-get install software-properties-common -y
-apt-get install universal-ctags -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install git vim -y
+sudo apt-get install software-properties-common -y
+sudo apt-get install universal-ctags -y
 # Add NeoVim PPA
-add-apt-repository ppa:neovim-ppa/stable -y
-apt-get update -y
-apt-get install clangd neovim curl -y
+sudo add-apt-repository ppa:neovim-ppa/stable -y
+sudo apt-get update -y
+sudo apt-get install clangd neovim curl -y
 # Install node version 18.x
 curl -sL https://deb.nodesource.com/setup_18.x | bash -
-apt-get install nodejs npm -y
-apt-get install build-essential -y
+sudo apt-get install nodejs npm -y
+sudo apt-get install build-essential -y
+sudo npm install -g n 
+sudo n latest
 npm install -g yarn -y
 yarn
-apt-get install python3-dev python3-pip -y
+sudo apt-get install python3-dev python3-pip -y
 # Install pip
 pip3 install python-language-server==0.20.0
 pip3 install --user pynvim
