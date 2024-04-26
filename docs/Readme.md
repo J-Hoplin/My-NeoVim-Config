@@ -103,4 +103,37 @@ Lazy가 잘 설치되었는지 확인을 위해서 NeoVim에 들어간 후 `:Laz
 
 ![img](./img/1.png)
 
-...TBC
+## Plugin 활용하기
+
+이에 앞서 `~/.config/nvim/lua/plugins` 디렉토리에 `lua` 파일을 만든다. 컨벤션은 아래와 같다.
+
+```
+(Plugin Name).lua
+```
+
+### Gruvbox Color Scheme
+
+[Gruv Box Color Scheme Github](https://github.com/ellisonleao/gruvbox.nvim)
+
+plugin 디렉토리에 `gruvbox.lua`파일을 생성해주고 아래 코드를 붙여준다.
+
+```lua
+return {
+	"ellisonleao/gruvbox.nvim",
+	priority = 1000 ,
+	lazy = false, -- lazy loading을 하지 말라고 명시한다. 즉 에디터 로드 시 바로 이 플러그인을 실행시키라는 의미이다.
+	config = function()
+		vim.cmd([[colorscheme gruvbox]])
+	end,
+}
+```
+
+이후 다시 `/lua/config/init.lua` 파일을 킨 후 local 변수 `plugins`를 아래와 같이 바꿔준다.
+
+```
+local plugins = "plugins" -- plugins의 모든 파일을 자동으로 불러온다
+```
+
+이후 `nvim`을 쳐서 들어가면 color scheme이 다운로드 및 적용되는걸 볼 수 있다.
+
+![img](./img/2.png)
