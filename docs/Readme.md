@@ -137,3 +137,66 @@ local plugins = "plugins" -- plugins의 모든 파일을 자동으로 불러온�
 이후 `nvim`을 쳐서 들어가면 color scheme이 다운로드 및 적용되는걸 볼 수 있다.
 
 ![img](./img/2.png)
+
+### Neotree
+
+`Neotree`는 Neovim에서 File Tree를 관리해주는 툴이다. 쉽게 말하면 탐색기이다.
+
+[Github](https://github.com/nvim-neo-tree/neo-tree.nvim)
+
+위와 동일하게 `/plugin` 디렉토리에 `neo-tree.lua`라는 파일을 만들어 주고 아래 코드를 입력해준다.(캐치해야할 것은 각 plugin github의 install script에 대해 return을 해주어야 한다.)
+
+```lua
+return {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+}
+```
+
+동일하게 `neo-tree`가 설치되었는지 확인한다.
+
+![img](./img/3.png)
+
+Neovim에서 `:Neotree toggle`이라고 입력하면 아래와 같이 Filesystem Finder가 나오는것을 볼 수 있다.
+
+![img](./img/4.png)
+
+### Telescope
+
+Fuzzy Finding 기능을 가지고 있다. Fuzzy Finding은 말 그대로 검색을 할때 활용된다. 예를 들어 파일을 찾을때처럼 말이다. 또한 Live Grep이라는 기능을 제공한다. 이는 특정 문자를 입력했을때 관련 키워드를 보여주는 등의 역할을 한다.
+
+Live Grep을 활용하기 위해서는 `ripgrep`이라는 패키지가 요구된다. 맥에서는 brew로 설치할 수 있다.
+
+```
+brew install ripgrep
+```
+
+이제 Telescope를 설치해보자.
+
+[Github](https://github.com/nvim-telescope/telescope.nvim)
+
+동일하게 `plugin` 폴더 안에 `telescope.lua`를 생성해주고 아래 코드를 붙여준다.
+
+```lua
+return {
+    'nvim-telescope/telescope.nvim', tag = '0.1.6',
+-- or                              , branch = '0.1.x',
+      dependencies = { 'nvim-lua/plenary.nvim' }
+    }
+```
+
+다시 neovim을 열면 아래와 같이 `telescope`가 설치된걸 볼 수 있다.
+
+![img](./img/5.png)
+
+neovim에서 `:Telescope find_files`를 입력하면 루트부터 하위 디렉토리까지 파일을 찾을 수 있는 파인더가 나온다.
+
+그 다음 Live Grep을 활용하면 아래와 같이 파일의 내용에서 찾아 검색 결과를 볼 수 있다.
+
+![img](./img/6.png)
